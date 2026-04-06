@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Painel Institucional — Rcl 88.319/SP | Câmara Municipal de Álvares Machado</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700;900&family=Open+Sans:wght@300;400;600;700&display=swap');
+
+  :root {
+    --azul-escuro:  #0d2a4e;
+    --azul-medio:   #1a4580;
+    --azul-claro:   #2c6fad;
+    --dourado:      #c0952a;
+    --dourado-claro:#e8c05a;
+    --verde:        #2e7d32;
+    --verde-claro:  #43a047;
+    --vermelho:     #c62828;
+    --laranja:      #e65100;
+    --cinza-claro:  #f0f4f8;
+    --cinza-borda:  #cfd8dc;
+    --branco:       #ffffff;
+    --texto-escuro: #1a1a2e;
+    --texto-medio:  #37474f;
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  body {
+    font-family:'Open Sans',sans-serif;
+    background:#e8edf2;
+    color:var(--texto-escuro);
+    font-size:13px;
+    line-height:1.5;
+  }
+
+  .page-wrapper { max-width:1240px; margin:0 auto; padding:20px; }
+
+  /* ---- CABEÇALHO ---- */
+  .header-institucional {
+    background:linear-gradient(135deg,var(--azul-escuro) 0%,var(--azul-medio) 60%,var(--azul-claro) 100%);
+    border-radius:10px 10px 0 0;
+    padding:28px 36px 22px;
+    display:flex; align-items:center; justify-content:space-between;
+    position:relative; overflow:hidden;
+  }
+  .header-institucional::before {
+    content:''; position:absolute; top:-30px; right:-30px;
+    width:200px; height:200px; border-radius:50%;
+    background:rgba(192,149,42,.15);
+  }
+  .header-logo { display:flex; align-items:center; gap:18px; }
+  .escudo {
+    width:70px; height:70px; border-radius:50%; flex-shrink:0;
+    background:linear-gradient(145deg,var(--dourado),var(--dourado-claro));
+    display:flex; align-items:center; justify-content:center;
+    font-size:30px; border:3px solid rgba(255,255,255,.25);
+    box-shadow:0 4px 14px rgba(0,0,0,.3);
+  }
+  .header-texto h1 {
+    font-family:'Merriweather',serif; color:var(--branco);
+    font-size:17px; font-weight:700; letter-spacing:.3px;
+  }
+  .header-texto h2 {
+    color:var(--dourado-claro); font-size:12px; font-weight:400;
+    letter-spacing:1px; text-transform:uppercase; margin-top:4px;
+  }
+  .header-direito { text-align:right; color:rgba(255,255,255,.85); position:relative; z-index:1; }
+  .header-direito .doc-label { font-size:10px; text-transform:uppercase; letter-spacing:1.5px; color:var(--dourado-claro); display:block; margin-bottom:4px; }
+  .header-direito .doc-titulo { font-family:'Merriweather',serif; font-size:15px; font-weight:700; color:var(--branco); display:block; }
+  .header-direito .doc-sub { font-size:11px; color:rgba(255,255,255,.7); display:block; margin-top:3px; }
+
+  /* ---- FAIXA ALERTA ---- */
+  .faixa-alerta {
+    background:linear-gradient(90deg,var(--dourado) 0%,#a07820 100%);
+    padding:10px 36px; display:flex; align-items:center; gap:14px; color:var(--branco);
+  }
+  .faixa-alerta .icone-alerta { font-size:20px; }
+  .faixa-alerta .texto-alerta { font-size:12.5px; font-weight:600; letter-spacing:.3px; }
+  .faixa-alerta .prazo-badge {
+    margin-left:auto; background:rgba(255,255,255,.25);
+    border:1px solid rgba(255,255,255,.5); border-radius:20px;
+    padding:4px 14px; font-size:11.5px; font-weight:700; white-space:nowrap;
+  }
+
+  /* ---- CORPO ---- */
+  .painel-body { background:var(--cinza-claro); padding:24px 28px; border-radius:0 0 10px 10px; box-shadow:0 6px 24px rgba(0,0,0,.1); }
+
+  /* ---- SEÇÕES ---- */
+  .secao { margin-bottom:24px; }
+  .secao-titulo { display:flex; align-items:center; gap:10px; margin-bottom:14px; }
+  .secao-titulo .icone-secao { width:32px; height:32px; border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:16px; flex-shrink:0; }
+  .secao-titulo h3 { font-family:'Merriweather',serif; font-size:14px; font-weight:700; color:var(--azul-escuro); text-transform:uppercase; letter-spacing:.5px; }
+  .secao-titulo .linha-titulo { flex:1; height:2px; background:linear-gradient(90deg,var(--azul-claro),transparent); border-radius:1px; }
+
+  .separador { height:1px; background:linear-gradient(90deg,transparent,var(--cinza-borda),transparent); margin:20px 0; }
+
+  /* ---- INDICADORES ---- */
+  .grid-indicadores { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; }
+  .card-indicador {
+    background:var(--branco); border-radius:10px; padding:18px 16px 14px;
+    text-align:center; box-shadow:0 2px 8px rgba(0,0,0,.07);
+    position:relative; overflow:hidden;
+  }
+  .card-indicador::before { content:''; position:absolute; top:0; left:0; right:0; height:4px; }
+  .card-indicador.ind-azul::before  { background:var(--azul-claro); }
+  .card-indicador.ind-verde::before { background:var(--verde); }
+  .card-indicador.ind-roxo::before  { background:#7b1fa2; }
+  .card-indicador.ind-laranja::before { background:var(--laranja); }
+  .card-indicador .ind-numero { font-family:'Merriweather',serif; font-size:36px; font-weight:900; line-height:1; margin-bottom:6px; }
+  .ind-azul .ind-numero { color:var(--azul-claro); }
+  .ind-verde .ind-numero { color:var(--verde); }
+  .ind-roxo .ind-numero { color:#7b1fa2; }
+  .ind-laranja .ind-numero { color:var(--laranja); }
+  .card-indicador .ind-label { font-size:11px; color:var(--texto-medio); font-weight:600; text-transform:uppercase; letter-spacing:.5px; line-height:1.4; }
+  .card-indicador .ind-sub { font-size:10px; color:#90a4ae; margin-top:6px; }
+
+  /* ---- BARRAS DIST. ---- */
+  .barra-classificacao { background:var(--branco); border-radius:10px; padding:18px 22px; box-shadow:0 2px 8px rgba(0,0,0,.07); margin-top:14px; }
+  .barra-titulo { font-size:12px; font-weight:700; color:var(--azul-escuro); margin-bottom:12px; text-transform:uppercase; letter-spacing:.4px; }
+  .barra-item { margin-bottom:10px; }
+  .barra-item .barra-label-row { display:flex; justify-content:space-between; margin-bottom:4px; }
+  .barra-item .barra-nome { font-size:11.5px; color:var(--texto-medio); font-weight:600; }
+  .barra-item .barra-pct { font-size:11px; color:#78909c; }
+  .barra-track { height:10px; background:#eceff1; border-radius:5px; overflow:hidden; }
+  .barra-fill { height:100%; border-radius:5px; }
+  .fill-azul   { background:linear-gradient(90deg,var(--azul-claro),#90caf9); }
+  .fill-verde  { background:linear-gradient(90deg,var(--verde),#81c784); }
+  .fill-amarelo{ background:linear-gradient(90deg,#f9a825,#ffcc02); }
+
+  /* ---- TETOS ---- */
+  .grid-tetos { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+  .card-teto { background:var(--branco); border-radius:10px; overflow:hidden; box-shadow:0 2px 8px rgba(0,0,0,.07); text-align:center; }
+  .card-teto .teto-header { padding:12px 14px 10px; color:var(--branco); font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.5px; }
+  .teto-geral .teto-header      { background:var(--azul-medio); }
+  .teto-vereadores .teto-header { background:#5c3d8f; }
+  .teto-procuradores .teto-header{ background:#00695c; }
+  .card-teto .teto-valor { padding:16px 14px 8px; font-family:'Merriweather',serif; font-weight:900; font-size:22px; color:var(--azul-escuro); line-height:1; }
+  .teto-vereadores .teto-valor  { color:#5c3d8f; }
+  .teto-procuradores .teto-valor{ color:#00695c; font-size:14px; padding-top:14px; }
+  .card-teto .teto-label { font-size:11px; color:var(--texto-medio); padding:0 12px 6px; }
+  .card-teto .teto-fundamento { font-size:10px; color:#78909c; padding:6px 12px 12px; background:#f9fafc; border-top:1px solid var(--cinza-borda); line-height:1.4; }
+  .card-teto .teto-fundamento strong { color:var(--azul-claro); }
+
+  /* ---- NOTA EC ---- */
+  .nota-ec { background:#fff8e1; border:1px solid #ffe082; border-left:4px solid var(--dourado); border-radius:8px; padding:12px 16px; margin-top:14px; }
+  .nota-ec .nota-titulo { font-size:11.5px; font-weight:700; color:#e65100; margin-bottom:6px; display:flex; align-items:center; gap:6px; }
+  .nota-ec p { font-size:11.5px; color:#5d4037; line-height:1.55; }
+
+  /* ---- FLUXO ---- */
+  .fluxo-container { background:var(--branco); border-radius:10px; padding:20px 24px; box-shadow:0 2px 8px rgba(0,0,0,.07); }
+  .fluxo-steps { display:flex; align-items:flex-start; gap:0; position:relative; }
+  .fluxo-step { flex:1; text-align:center; position:relative; padding:0 6px; }
+  .fluxo-step:not(:last-child)::after { content:''; position:absolute; top:18px; left:60%; width:80%; height:3px; background:linear-gradient(90deg,var(--azul-claro),#b0bec5); z-index:0; }
+  .fluxo-step .step-circulo { width:38px; height:38px; border-radius:50%; margin:0 auto 8px; display:flex; align-items:center; justify-content:center; font-size:16px; position:relative; z-index:1; box-shadow:0 3px 8px rgba(0,0,0,.15); }
+  .step-1 .step-circulo { background:var(--azul-medio); color:white; }
+  .step-2 .step-circulo { background:#5c3d8f; color:white; }
+  .step-3 .step-circulo { background:var(--verde); color:white; }
+  .step-4 .step-circulo { background:var(--laranja); color:white; }
+  .step-5 .step-circulo { background:var(--vermelho); color:white; }
+  .fluxo-step .step-titulo { font-size:11px; font-weight:700; color:var(--azul-escuro); text-transform:uppercase; letter-spacing:.3px; margin-bottom:5px; }
+  .fluxo-step .step-desc { font-size:10.5px; color:var(--texto-medio); line-height:1.4; }
+
+  /* ---- TABELA ANALÍTICA ---- */
+  .tabela-container { border-radius:10px; overflow:hidden; box-shadow:0 2px 8px rgba(0,0,0,.07); }
+  .tabela-verbas { width:100%; border-collapse:collapse; background:var(--branco); }
+  .tabela-verbas thead tr { background:var(--azul-escuro); }
+  .tabela-verbas thead th { padding:11px 14px; text-align:left; color:var(--branco); font-size:11px; text-transform:uppercase; letter-spacing:.5px; font-weight:700; }
+  .tabela-verbas thead th.center { text-align:center; }
+  .tabela-verbas tbody tr { border-bottom:1px solid #eef2f5; transition:background .15s; }
+  .tabela-verbas tbody tr:hover { background:#f5f8fb; }
+  .tabela-verbas tbody tr.grupo-header td { background:linear-gradient(90deg,var(--azul-escuro),#1e3a6e); color:var(--dourado-claro); font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.8px; padding:8px 14px; }
+  .tabela-verbas tbody tr.grupo-verde td { background:linear-gradient(90deg,#1b5e20,#2e7d32); color:#a5d6a7; font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.8px; padding:8px 14px; }
+  .tabela-verbas tbody td { padding:9px 14px; font-size:12px; color:var(--texto-medio); vertical-align:middle; }
+  .tabela-verbas tbody td:first-child { font-weight:600; color:var(--texto-escuro); }
+  .tabela-verbas tbody td.center { text-align:center; }
+  .tabela-verbas tbody td.valor { text-align:right; font-family:'Courier New',monospace; font-size:12px; font-weight:700; color:var(--azul-escuro); }
+  .fundamento-legal { font-size:10.5px; color:#607d8b; font-style:italic; }
+
+  /* badges */
+  .badge { display:inline-block; padding:3px 10px; border-radius:20px; font-size:10.5px; font-weight:700; text-transform:uppercase; letter-spacing:.3px; white-space:nowrap; }
+  .badge-rem   { background:#e3f2fd; color:var(--azul-medio); border:1px solid #90caf9; }
+  .badge-ind   { background:#e8f5e9; color:var(--verde);       border:1px solid #a5d6a7; }
+  .badge-prud  { background:#fff8e1; color:#f57f17;             border:1px solid #ffcc80; }
+  .badge-mista { background:#fff3e0; color:var(--laranja);      border:1px solid #ffcc80; }
+  .badge-sim   { display:inline-block; padding:3px 10px; border-radius:20px; font-size:10.5px; font-weight:700; text-transform:uppercase; background:#ffebee; color:var(--vermelho); border:1px solid #ef9a9a; }
+  .badge-nao   { display:inline-block; padding:3px 10px; border-radius:20px; font-size:10.5px; font-weight:700; text-transform:uppercase; background:#e8f5e9; color:var(--verde);    border:1px solid #a5d6a7; }
+  .badge-bc    { display:inline-block; padding:3px 10px; border-radius:20px; font-size:10.5px; font-weight:700; text-transform:uppercase; background:#f3e5f5; color:#6a1b9a;         border:1px solid #ce93d8; }
+  .badge-prud2 { display:inline-block; padding:3px 10px; border-radius:20px; font-size:10.5px; font-weight:700; text-transform:uppercase; background:#fff8e1; color:#e65100;         border:1px solid #ffcc80; }
+
+  /* =====================================================
+     SEÇÃO POR SERVIDOR
+  ===================================================== */
+  .grid-servidores { display:grid; grid-template-columns:repeat(2,1fr); gap:16px; }
+  .card-servidor {
+    background:var(--branco); border-radius:10px;
+    box-shadow:0 2px 8px rgba(0,0,0,.08); overflow:hidden;
+  }
+
+  .card-servidor .srv-header {
+    padding:12px 18px; display:flex; align-items:center; gap:12px;
+    color:var(--branco);
+  }
+  .srv-ativo     .srv-header { background:linear-gradient(90deg,var(--azul-medio),var(--azul-claro)); }
+  .srv-inativo   .srv-header { background:linear-gradient(90deg,#455a64,#607d8b); }
+  .srv-politico  .srv-header { background:linear-gradient(90deg,#5c3d8f,#7b52b8); }
+  .srv-procurador.srv-header { background:linear-gradient(90deg,#00695c,#00897b); }
+
+  .srv-header .srv-icone { font-size:22px; flex-shrink:0; }
+  .srv-header .srv-info { flex:1; min-width:0; }
+  .srv-header .srv-cargo { font-family:'Merriweather',serif; font-size:12.5px; font-weight:700; line-height:1.3; }
+  .srv-header .srv-teto-label { font-size:10px; opacity:.85; margin-top:2px; }
+
+
+
+  /* mini-tabela de verbas */
+  .srv-verbas { width:100%; border-collapse:collapse; }
+  .srv-verbas tbody tr { border-bottom:1px solid #f0f4f8; }
+  .srv-verbas tbody tr:last-child { border-bottom:none; }
+  .srv-verbas td { padding:6px 18px; font-size:11.5px; vertical-align:middle; }
+  .srv-verbas td.vb-nome { color:var(--texto-medio); }
+  .srv-verbas td.vb-badge { width:90px; }
+  .srv-verbas td.vb-valor { text-align:right; font-family:'Courier New',monospace; font-size:12px; font-weight:700; color:var(--azul-escuro); width:110px; }
+  .srv-verbas td.vb-redutor { text-align:right; font-family:'Courier New',monospace; font-size:12px; font-weight:700; color:var(--vermelho); width:110px; }
+
+  .srv-total-row {
+    display:flex; justify-content:space-between; align-items:center;
+    padding:10px 18px 14px;
+    border-top:2px solid #e8edf2;
+    margin-top:4px;
+  }
+  .srv-total-row .tot-label { font-size:12px; font-weight:700; color:var(--azul-escuro); text-transform:uppercase; letter-spacing:.3px; }
+  .srv-total-row .tot-valor { font-family:'Merriweather',serif; font-size:16px; font-weight:900; color:var(--azul-escuro); }
+  .srv-total-row .tot-teto  { font-size:10.5px; color:#78909c; text-align:right; }
+
+  /* alerta redutor */
+  .nota-redutor {
+    margin:0 18px 12px; padding:7px 12px; border-radius:6px;
+    background:#ffebee; border-left:3px solid var(--vermelho);
+    font-size:11px; color:var(--vermelho); font-weight:600; line-height:1.5;
+  }
+
+  /* ---- RODAPÉ ---- */
+  .rodape {
+    margin-top:20px; background:var(--azul-escuro); border-radius:10px;
+    padding:16px 28px; display:flex; align-items:center; justify-content:space-between;
+    box-shadow:0 4px 12px rgba(0,0,0,.12);
+  }
+  .rodape .rod-esq { color:rgba(255,255,255,.7); font-size:11px; }
+  .rodape .rod-esq strong { color:var(--dourado-claro); display:block; font-size:13px; margin-bottom:3px; }
+  .rodape .rod-dir { text-align:right; color:rgba(255,255,255,.6); font-size:10.5px; }
+  .rodape .rod-dir .oab { color:var(--dourado-claro); font-weight:700; font-size:12px; }
+
+  @media print {
+    body { background:white; }
+    .page-wrapper { padding:0; max-width:100%; }
+    * { -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  }
+
+  .vb-fundamento {
+    display: block;
+    font-size: 10px;
+    color: #78909c;
+    font-style: italic;
+    margin-top: 2px;
+    line-height: 1.3;
+  }
+</style>
+</head>
+<body>
+<div class="page-wrapper">
+<!-- CABEÇALHO -->
+<div class="header-institucional">
+<div class="header-logo">
+<div class="escudo">⚖️</div>
+<div class="header-texto">
+<h1>Câmara Municipal de Álvares Machado — SP</h1>
+<h2>Procuradoria Jurídica Legislativa · Poder Legislativo Municipal</h2>
+</div>
+</div>
+<div class="header-direito">
+<span class="doc-label">Painel Institucional · Controle Remuneratório</span>
+<span class="doc-titulo">Rcl 88.319/SP — STF</span>
+<span class="doc-sub">Rel. Min. Flávio Dino · 1.º de abril de 2026</span>
+</div>
+</div>
+<div class="painel-body">
+<!-- =============================================
+         SEÇÃO 1 — TETO / SUBTETO
+    ============================================== -->
+<div class="secao">
+<div class="secao-titulo">
+<div class="icone-secao" style="background:#fce4ec;color:var(--vermelho);">🏛️</div>
+<h3>Teto e Subtetos Remuneratórios — Art. 37, XI, CF/88</h3>
+<div class="linha-titulo"></div>
+</div>
+<div class="grid-tetos">
+<div class="card-teto teto-geral">
+<div class="teto-header">🏗️ Teto Geral Municipal</div>
+<div class="teto-valor">R$ 22.000,00</div>
+<div class="teto-label">Subsídio do Prefeito de Álvares Machado<br/>Servidores ativos e inativos do Poder Legislativo</div>
+<div class="teto-fundamento">
+<strong>Fundamento:</strong> Art. 37, XI, CF/88 (EC 41/2003)<br/>
+<strong>Lei:</strong> Lei Municipal nº 3.098/2023
+          </div>
+</div>
+<div class="card-teto teto-vereadores">
+<div class="teto-header">🗳️ Subteto — Vereadores</div>
+<div class="teto-valor">R$ 10.432,39</div>
+<div class="teto-label">30% do subsídio dos Deputados Estaduais<br/>(pop. 27.255 hab. — Censo IBGE 2022)</div>
+<div class="teto-fundamento">
+<strong>Fundamento:</strong> Art. 29, VI, "b", CF/88<br/>
+<strong>Base:</strong> Subsídio Dep. Est./SP = R$ 34.774,64 (Lei Est. 17.617/2023)<br/>
+<strong>Resolução:</strong> Leg. nº 06/2024
+          </div>
+</div>
+<div class="card-teto teto-procuradores">
+<div class="teto-header">⚖️ Subteto — Procurador Municipal</div>
+<div class="teto-valor">90,25% do Subsídio<br/>dos Min. do STF<br/><span style="font-size:11px;">(≈ R$ 41.845,18)</span></div>
+<div class="teto-label">Equivalente ao subsídio dos Desembargadores do TJSP</div>
+<div class="teto-fundamento">
+<strong>Fundamento:</strong> Art. 37, XI, parte final, CF/88<br/>
+<strong>Precedente:</strong> RE 663.696/MG — Tema 510 STF<br/>
+<strong>Rel.:</strong> Min. Luiz Fux (28/02/2019)
+          </div>
+</div>
+</div>
+</div>
+<div class="separador"></div>
+<!-- =============================================
+         SEÇÃO 3 — ANÁLISE POR SERVIDOR
+    ============================================== -->
+<div class="secao">
+<div class="secao-titulo">
+<div class="icone-secao" style="background:#e3f2fd;color:var(--azul-claro);">👤</div>
+<h3>Composição Remuneratória por Cargo/Agente</h3>
+<div class="linha-titulo"></div>
+</div>
+<div class="grid-servidores">
+<!-- ESCRITURÁRIO 1 -->
+<div class="card-servidor srv-ativo">
+<div class="srv-header">
+<div class="srv-icone">🖊️</div>
+<div class="srv-info">
+<div class="srv-cargo">Escriturário 1 — Servidor Efetivo</div>
+<div class="srv-teto-label">Teto: Subsídio do Prefeito — R$ 22.000,00</div>
+</div>
+</div>
+<table class="srv-verbas">
+<tbody>
+<tr>
+<td class="vb-nome">Vencimento Básico<span class="vb-fundamento">Lei Mun. nº 3.180/2025, art. 2º e Anexo I</span></td>
+<td class="vb-badge"><span class="badge badge-rem">Remuneratória</span></td>
+<td class="vb-valor">R$ 2.120,36</td>
+</tr>
+<tr>
+<td class="vb-nome">Grat. de Função (Controlador Interno)<span class="vb-fundamento">Lei Mun. nº 3.180/2025, art. 2º e Anexo II</span></td>
+<td class="vb-badge"><span class="badge badge-rem">Remuneratória</span></td>
+<td class="vb-valor">R$ 2.250,00</td>
+</tr>
+<tr>
+<td class="vb-nome">Adicional de Qualificação<span class="vb-fundamento">Lei Mun. nº 3.180/2025, art. 4º</span></td>
+<td class="vb-badge"><span class="badge badge-rem">Remuneratória</span></td>
+<td class="vb-valor">R$ 106,01</td>
+</tr>
+<tr>
+<td class="vb-nome">Vale-Alimentação<span class="vb-fundamento">Lei Mun. nº 3.165/2025, arts. 1º e 3º</span></td>
+<td class="vb-badge"><span class="badge badge-ind">Indenizatória</span></td>
+<td class="vb-valor">R$ 1.041,89</td>
+</tr>
+</tbody>
+</table>
+<div class="srv-total-row">
+<span class="tot-label">Total Mensal</span>
+<div style="text-align:right;">
+<div class="tot-valor">R$ 5.518,26</div>
+<div class="tot-teto">Remun. sujeita ao teto: R$ 4.476,37 · Margem: R$ 17.523,63</div>
+</div>
+</div>
+</div>
+<!-- ESCRITURÁRIO 2 -->
+<div class="card-servidor srv-ativo">
+<div class="srv-header">
+<div class="srv-icone">🖊️</div>
+<div class="srv-info">
+<div class="srv-cargo">Escriturário 2 — Servidor Efetivo</div>
+<div class="srv-teto-label">Teto: Subsídio do Prefeito — R$ 22.000,00</div>
+</div>
+</div>
+<table class="srv-verbas">
+<tbody>
+<tr>
+<td class="vb-nome">Vencimento Básico<span class="vb-fundamento">Lei Mun. nº 3.180/2025, art. 2º e Anexo I</span></td>
+<td class="vb-badge"><span class="badge badge-rem">Remuneratória</span></td>
+<td class="vb-valor">R$ 2.120,36</td>
+</tr>
+<tr>
+<td class="vb-nome">Grat. de Função (Agente de Contratação)<span class="vb-fundamento">Lei Mun. nº 3.180/2025, art. 2º e Anexo II</span></td>
+<td class="vb-badge"><span class="badge badge-rem">Remuneratória</span></td>
+<td class="vb-valor">R$ 2.250,00</td>
+</tr>
+<tr>
+<td class="vb-nome">Vale-Alimentação<span class="vb-fundamento">Lei Mun. nº 3.165/2025, arts. 1º e 3º</span></td>
+<td class="vb-badge"><span class="badge badge-ind">Indenizatória</span></td>
+<td class="vb-valor">R$ 1.041,89</td>
+</tr>
+</tbody>
+</table>
+<div class="srv-total-row">
+<span class="tot-label">Total Mensal</span>
+<div style="text-align:right;">
+<div class="tot-valor">R$ 5.412,25</div>
+<div class="tot-teto">Remun. sujeita ao teto: R$ 4.370,36 · Margem: R$ 17.629,64</div>
+</div>
+</div>
+</div>
+<!-- SERVIÇOS GERAIS -->
+<div class="card-servidor srv-ativo">
+<div class="srv-header">
+<div class="srv-icone">🔧</div>
+<div class="srv-info">
+<div class="srv-cargo">Serviços Gerais — Servidor Efetivo</div>
+<div class="srv-teto-label">Teto: Subsídio do Prefeito — R$ 22.000,00</div>
+</div>
+</div>
+<table class="srv-verbas">
+<tbody>
+<tr>
+<td class="vb-nome">Vencimento Básico<span class="vb-fundamento">Lei Mun. nº 3.180/2025, art. 2º e Anexo I</span></td>
+<td class="vb-badge"><span class="badge badge-rem">Remuneratória</span></td>
+<td class="vb-valor">R$ 1.999,55</td>
+</tr>
+<tr>
+<td class="vb-nome">Grat. de Função (Fiscal Adm. / Técnico Contratos)<span class="vb-fundamento">Lei Mun. nº 3.180/2025, art. 2º e Anexo II</span></td>
+<td class="vb-badge"><span class="badge badge-rem">Remuneratória</span></td>
+<td class="vb-valor">R$ 1.600,00</td>
+</tr>
+<tr>
+<td class="vb-nome">Vale-Alimentação<span class="vb-fundamento">Lei Mun. nº 3.165/2025, arts. 1º e 3º</span></td>
+<td class="vb-badge"><span class="badge badge-ind">Indenizatória</span></td>
+<td class="vb-valor">R$ 1.041,89</td>
+</tr>
+</tbody>
+</table>
+<div class="srv-total-row">
+<span class="tot-label">Total Mensal</span>
+<div style="text-align:right;">
+<div class="tot-valor">R$ 4.641,44</div>
+<div class="tot-teto">Remun. sujeita ao teto: R$ 3.599,55 · Margem: R$ 18.400,45</div>
+</div>
+</div>
+</div>
+<!-- CONTABILISTA -->
+<div class="card-servidor srv-ativo">
+<div class="srv-header">
+<div class="srv-icone">🧮</div>
+<div class="srv-info">
+<div class="srv-cargo">Contabilista — Servidor Efetivo</div>
+<div class="srv-teto-label">Teto: Subsídio do Prefeito — R$ 22.000,00</div>
+</div>
+</div>
+<table class="srv-verbas">
+<tbody>
+<tr>
+<td class="vb-nome">Vencimento Básico<span class="vb-fundamento">Lei Mun. nº 3.180/2025, art. 2º e Anexo I</span></td>
+<td class="vb-badge"><span class="badge badge-rem">Remuneratória</span></td>
+<td class="vb-valor">R$ 7.506,55</td>
+</tr>
+<tr>
+<td class="vb-nome">Grat. de Função (Técnico Orçamentista/Financeiro/Tesouraria)<span class="vb-fundamento">Lei Mun. nº 3.180/2025, art. 2º e Anexo II</span></td>
+<td class="vb-badge"><span class="badge badge-rem">Remuneratória</span></td>
+<td class="vb-valor">R$ 2.250,00</td>
+</tr>
+<tr>
+<td class="vb-nome">Vale-Alimentação<span class="vb-fundamento">Lei Mun. nº 3.165/2025, arts. 1º e 3º</span></td>
+<td class="vb-badge"><span class="badge badge-ind">Indenizatória</span></td>
+<td class="vb-valor">R$ 1.041,89</td>
+</tr>
+</tbody>
+</table>
+<div class="srv-total-row">
+<span class="tot-label">Total Mensal</span>
+<div style="text-align:right;">
+<div class="tot-valor">R$ 10.798,44</div>
+<div class="tot-teto">Remun. sujeita ao teto: R$ 9.756,55 · Margem: R$ 12.243,45</div>
+</div>
+</div>
+</div>
+<!-- PROCURADOR JURÍDICO LEGISLATIVO -->
+<div class="card-servidor" style="border-top:none;">
+<div class="srv-header srv-procurador" style="background:linear-gradient(90deg,#00695c,#00897b);">
+<div class="srv-icone">⚖️</div>
+<div class="srv-info">
+<div class="srv-cargo">Procurador Jurídico Legislativo</div>
+<div class="srv-teto-label">Teto: 90,25% do Subsídio Min. STF (≈ R$ 41.845,18) · Tema 510</div>
+</div>
+</div>
+<table class="srv-verbas">
+<tbody>
+<tr>
+<td class="vb-nome">Vencimento Básico<span class="vb-fundamento">Lei Mun. nº 3.180/2025, art. 2º e Anexo I</span></td>
+<td class="vb-badge"><span class="badge badge-rem">Remuneratória</span></td>
+<td class="vb-valor">R$ 8.027,64</td>
+</tr>
+<tr>
+<td class="vb-nome">Grat. de Função (Encarregado de LGPD)<span class="vb-fundamento">Lei Mun. nº 3.180/2025, art. 2º e Anexo II</span></td>
+<td class="vb-badge"><span class="badge badge-rem">Remuneratória</span></td>
+<td class="vb-valor">R$ 1.000,00</td>
+</tr>
+<tr>
+<td class="vb-nome">Adicional de Qualificação (30% venc. básico)<span class="vb-fundamento">Lei Mun. nº 3.180/2025, art. 4º</span></td>
+<td class="vb-badge"><span class="badge badge-rem">Remuneratória</span></td>
+<td class="vb-valor">R$ 2.006,91</td>
+</tr>
+<tr>
+<td class="vb-nome">Vale-Alimentação<span class="vb-fundamento">Lei Mun. nº 3.165/2025, arts. 1º e 3º</span></td>
+<td class="vb-badge"><span class="badge badge-ind">Indenizatória</span></td>
+<td class="vb-valor">R$ 1.041,89</td>
+</tr>
+</tbody>
+</table>
+<div class="srv-total-row">
+<span class="tot-label">Total Mensal</span>
+<div style="text-align:right;">
+<div class="tot-valor">R$ 12.076,44</div>
+<div class="tot-teto">Remun. sujeita ao teto: R$ 11.034,55 · Margem: ≈ R$ 30.810,63</div>
+</div>
+</div>
+</div>
+<!-- ASSESSOR -->
+<div class="card-servidor srv-ativo">
+<div class="srv-header">
+<div class="srv-icone">📁</div>
+<div class="srv-info">
+<div class="srv-cargo">Assessor de Rel. Institucionais e Diretoria Legislativa</div>
+<div class="srv-teto-label">Teto: Subsídio do Prefeito — R$ 22.000,00</div>
+</div>
+</div>
+<table class="srv-verbas">
+<tbody>
+<tr>
+<td class="vb-nome">Vencimento Básico<span class="vb-fundamento">Lei Mun. nº 3.180/2025, art. 2º e Anexo I</span></td>
+<td class="vb-badge"><span class="badge badge-rem">Remuneratória</span></td>
+<td class="vb-valor">R$ 11.060,24</td>
+</tr>
+<tr>
+<td class="vb-nome">Vale-Alimentação<span class="vb-fundamento">Lei Mun. nº 3.165/2025, arts. 1º e 3º</span></td>
+<td class="vb-badge"><span class="badge badge-ind">Indenizatória</span></td>
+<td class="vb-valor">R$ 1.041,89</td>
+</tr>
+</tbody>
+</table>
+<div class="srv-total-row">
+<span class="tot-label">Total Mensal</span>
+<div style="text-align:right;">
+<div class="tot-valor">R$ 12.102,13</div>
+<div class="tot-teto">Remun. sujeita ao teto: R$ 11.060,24 · Margem: R$ 10.939,76</div>
+</div>
+</div>
+</div>
+<!-- VEREADOR PRESIDENTE -->
+<div class="card-servidor srv-politico">
+<div class="srv-header" style="background:linear-gradient(90deg,#5c3d8f,#7b52b8);">
+<div class="srv-icone">🏛️</div>
+<div class="srv-info">
+<div class="srv-cargo">Vereador Presidente da Câmara Municipal</div>
+<div class="srv-teto-label">Subteto: 30% do Subsídio Dep. Estaduais — R$ 10.432,39</div>
+</div>
+</div>
+<table class="srv-verbas">
+<tbody>
+<tr>
+<td class="vb-nome">Subsídio (parcela única — regime de subsídio)<span class="vb-fundamento">Res. Leg. nº 06/2024, art. 2º</span></td>
+<td class="vb-badge"><span class="badge badge-rem">Remuneratória</span></td>
+<td class="vb-valor">R$ 3.500,00</td>
+</tr>
+</tbody>
+</table>
+<div class="srv-total-row">
+<span class="tot-label">Total Mensal</span>
+<div style="text-align:right;">
+<div class="tot-valor">R$ 3.500,00</div>
+<div class="tot-teto">Margem disponível: R$ 6.932,39</div>
+</div>
+</div>
+</div>
+<!-- VEREADOR -->
+<div class="card-servidor srv-politico">
+<div class="srv-header" style="background:linear-gradient(90deg,#5c3d8f,#7b52b8);">
+<div class="srv-icone">🗳️</div>
+<div class="srv-info">
+<div class="srv-cargo">Vereador (demais membros)</div>
+<div class="srv-teto-label">Subteto: 30% do Subsídio Dep. Estaduais — R$ 10.432,39</div>
+</div>
+</div>
+<table class="srv-verbas">
+<tbody>
+<tr>
+<td class="vb-nome">Subsídio (parcela única — regime de subsídio)<span class="vb-fundamento">Res. Leg. nº 06/2024, art. 2º</span></td>
+<td class="vb-badge"><span class="badge badge-rem">Remuneratória</span></td>
+<td class="vb-valor">R$ 1.750,00</td>
+</tr>
+</tbody>
+</table>
+<div class="srv-total-row">
+<span class="tot-label">Total Mensal</span>
+<div style="text-align:right;">
+<div class="tot-valor">R$ 1.750,00</div>
+<div class="tot-teto">Margem disponível: R$ 8.682,39</div>
+</div>
+</div>
+</div>
+<!-- ESCRITURÁRIO APOSENTADO -->
+<div class="card-servidor srv-inativo">
+<div class="srv-header" style="background:linear-gradient(90deg,#455a64,#607d8b);">
+<div class="srv-icone">📋</div>
+<div class="srv-info">
+<div class="srv-cargo">Escriturário Aposentado — Servidor Inativo</div>
+<div class="srv-teto-label">Teto: Subsídio do Prefeito — R$ 22.000,00 · REDUTOR APLICADO</div>
+</div>
+</div>
+<div class="nota-redutor">
+            ⚠️ Proventos brutos de R$ 29.497,43 excedem o teto. Redutor constitucional aplicado (art. 37, XI, CF/88 c/c art. 9º EC 41/2003). Decisão judicial com tutela antecipada — MS nº 1015584-02.2023.8.26.0482 (sem trânsito em julgado).
+          </div>
+<table class="srv-verbas">
+<tbody>
+<tr>
+<td class="vb-nome">Provento Bruto de Aposentadoria<span class="vb-fundamento">Lei Mun. nº 1.200/78, art. 223; Portaria 01/98</span></td>
+<td class="vb-badge"><span class="badge badge-rem">Remuneratória</span></td>
+<td class="vb-valor">R$ 29.497,43</td>
+</tr>
+<tr>
+<td class="vb-nome">Redutor Constitucional (aplicação do teto)<span class="vb-fundamento">Art. 37, XI, CF/88 c/c art. 9º, EC 41/2003</span></td>
+<td class="vb-badge"><span class="badge" style="background:#ffebee;color:var(--vermelho);border:1px solid #ef9a9a;">Redutor</span></td>
+<td class="vb-redutor">– R$ 7.497,43</td>
+</tr>
+</tbody>
+</table>
+<div class="srv-total-row">
+<span class="tot-label">Provento Efetivamente Pago</span>
+<div style="text-align:right;">
+<div class="tot-valor" style="color:var(--vermelho);">R$ 22.000,00</div>
+<div class="tot-teto">Limite máximo atingido · Redutor: R$ 7.497,43</div>
+</div>
+</div>
+</div>
+<!-- SECRETÁRIO APOSENTADO -->
+<div class="card-servidor srv-inativo">
+<div class="srv-header" style="background:linear-gradient(90deg,#455a64,#607d8b);">
+<div class="srv-icone">📋</div>
+<div class="srv-info">
+<div class="srv-cargo">Secretário Aposentado — Servidor Inativo</div>
+<div class="srv-teto-label">Teto: Subsídio do Prefeito — R$ 22.000,00</div>
+</div>
+</div>
+<table class="srv-verbas">
+<tbody>
+<tr>
+<td class="vb-nome">Provento de Aposentadoria (por tempo de serviço — integrais)<span class="vb-fundamento">Determinação judicial — Lei Mun. nº 2.476/06, art. 43</span></td>
+<td class="vb-badge"><span class="badge badge-rem">Remuneratória</span></td>
+<td class="vb-valor">R$ 18.312,17</td>
+</tr>
+</tbody>
+</table>
+<div class="srv-total-row">
+<span class="tot-label">Total Mensal</span>
+<div style="text-align:right;">
+<div class="tot-valor">R$ 18.312,17</div>
+<div class="tot-teto">Margem disponível: R$ 3.687,83</div>
+</div>
+</div>
+</div>
+</div><!-- fim grid-servidores -->
+</div>
+<div class="separador"></div>
+<!-- =============================================
+         SEÇÃO 5 — TABELA ANALÍTICA DE VERBAS
+    ============================================== -->
+<div class="secao">
+<div class="secao-titulo">
+<div class="icone-secao" style="background:#e8eaf6;color:#3f51b5;">📑</div>
+<h3>Análise Jurídica Individual das Rubricas — Classificação e Enquadramento</h3>
+<div class="linha-titulo"></div>
+</div>
+<div class="tabela-container">
+<table class="tabela-verbas">
+<thead>
+<tr>
+<th style="width:21%;">Rubrica / Verba</th>
+<th style="width:18%;">Fundamento Legal</th>
+<th class="center" style="width:11%;">Natureza</th>
+<th class="center" style="width:11%;">Sujeição ao Teto</th>
+<th class="center" style="width:11%;">Valor Ref. Jan/2026</th>
+<th style="width:28%;">Observação Conclusiva</th>
+</tr>
+</thead>
+<tbody>
+<tr class="grupo-header"><td colspan="6">🗳️ AGENTES POLÍTICOS — VEREADORES</td></tr>
+<tr>
+<td>Subsídio dos Vereadores</td>
+<td class="fundamento-legal">Art. 39, §4º, CF/88<br/>Res. Leg. nº 06/2024<br/>Lei Mun. nº 2.510/2007</td>
+<td class="center"><span class="badge badge-rem">Remuneratória</span></td>
+<td class="center"><span class="badge-sim">Sim</span></td>
+<td class="valor">R$ 3.500,00<br/><span style="font-size:10px;color:#90a4ae;">Pres. Câmara</span><br/>R$ 1.750,00<br/><span style="font-size:10px;color:#90a4ae;">Vereadores</span></td>
+<td>Teto específico: art. 29, VI, "b", CF/88. Subteto = R$ 10.432,39 (30% Dep. Est.). Valores fixados pela Res. Leg. nº 06/2024. <strong>Dentro do subteto.</strong></td>
+</tr>
+<tr class="grupo-header"><td colspan="6">👥 SERVIDORES EFETIVOS E COMISSIONADOS</td></tr>
+<tr>
+<td>Vencimento Básico</td>
+<td class="fundamento-legal">Lei Mun. nº 3.180/2025, arts. 1º, 2º e Anexo I; LC Mun. nº 42/2022, art. 42</td>
+<td class="center"><span class="badge badge-rem">Remuneratória</span></td>
+<td class="center"><span class="badge-sim">Sim</span></td>
+<td class="valor">R$ 1.999,55<br/>a<br/>R$ 11.060,24</td>
+<td>Parcela principal e permanente. Retribuição direta pelo exercício do cargo. Integra o cômputo do teto (CF, art. 37, XI).</td>
+</tr>
+<tr>
+<td>Gratificação de Função</td>
+<td class="fundamento-legal">Lei Mun. nº 3.180/2025, art. 2º e Anexo II; Res. Leg. nº 01/2025, arts. 15 a 25</td>
+<td class="center"><span class="badge badge-rem">Remuneratória</span></td>
+<td class="center"><span class="badge-sim">Sim</span></td>
+<td class="valor">R$ 1.000,00<br/>a<br/>R$ 2.250,00</td>
+<td>Retributiva vinculada ao exercício de função gratificada. Veda-se cumulação de vencimentos de duas FGs (art. 3º, §2º).</td>
+</tr>
+<tr>
+<td>Adicional de Especialização e Qualificação</td>
+<td class="fundamento-legal">Lei Mun. nº 3.180/2025, art. 4º, caput e §§1º a 13</td>
+<td class="center"><span class="badge badge-rem">Remuneratória</span></td>
+<td class="center"><span class="badge-sim">Sim</span></td>
+<td class="valor">R$ 106,01<br/>a<br/>R$ 2.006,91</td>
+<td>Vantagem pessoal. Limite: 30% do vencimento básico. Percentuais: 5–20% por título. Incidência previdenciária. Apenas servidores efetivos.</td>
+</tr>
+<tr class="grupo-header"><td colspan="6">📅 VERBAS SOCIAIS CONSTITUCIONALMENTE GARANTIDAS</td></tr>
+<tr>
+<td>Gratificação Natalina (13º Salário)</td>
+<td class="fundamento-legal">Art. 7º, VIII; art. 39, §3º, CF/88; LC Mun. nº 43/2022, arts. 61 a 64</td>
+<td class="center"><span class="badge badge-rem">Remuneratória</span></td>
+<td class="center"><span class="badge-sim">Sim</span></td>
+<td class="valor">1/12 da remun.<br/>por mês<br/>de exercício</td>
+<td>Analisada isoladamente (não somada à remun. de dezembro). Sujeita ao teto — Tema 1009/STJ; TJSP Rec. Inominado nº 10118647720248260066.</td>
+</tr>
+<tr>
+<td>Férias Gozadas + 1/3 Constitucional</td>
+<td class="fundamento-legal">Art. 7º, XVII; CF/88; LC Mun. nº 43/2022, art. 75</td>
+<td class="center"><span class="badge badge-rem">Remuneratória</span></td>
+<td class="center"><span class="badge-sim">Sim</span></td>
+<td class="valor">Remun. + 1/3<br/>sobre a remun.</td>
+<td>Teto incide na remuneração base e no adicional de 1/3. Direito social constitucional (art. 6º, XVII, CF/88).</td>
+</tr>
+<tr>
+<td>Conversão 1/3 Férias (atividade)</td>
+<td class="fundamento-legal">LC Mun. nº 43/2022, art. 79, caput e §1º</td>
+<td class="center"><span class="badge badge-rem">Remuneratória</span></td>
+<td class="center"><span class="badge-sim">Sim</span></td>
+<td class="valor">1/3 da remun.<br/>nos dias<br/>correspondentes</td>
+<td>Remuneratória enquanto há possibilidade de fruição (ARE 721.001/RJ — Tema 635 STF).</td>
+</tr>
+<tr>
+<td>Conversão 1/3 Férias (desvinculação)</td>
+<td class="fundamento-legal">LC Mun. nº 43/2022, art. 79, §2º</td>
+<td class="center"><span class="badge badge-ind">Indenizatória</span></td>
+<td class="center"><span class="badge-bc">Base de Cálculo</span></td>
+<td class="valor">1/3 da remun.<br/>(com teto na<br/>base de cálculo)</td>
+<td>Teto incide na <strong>base de cálculo</strong>, não no valor total da indenização — RE 1.266.423/RJ (Min. Cármen Lúcia).</td>
+</tr>
+<tr class="grupo-header"><td colspan="6">🏅 VANTAGENS PESSOAIS E ADICIONAIS</td></tr>
+<tr>
+<td>Licença-Prêmio (gozada / conversão na atividade)</td>
+<td class="fundamento-legal">LC Mun. nº 43/2022, arts. 95 a 99</td>
+<td class="center"><span class="badge badge-rem">Remuneratória</span></td>
+<td class="center"><span class="badge-sim">Sim</span></td>
+<td class="valor">Remun. na<br/>competência<br/>do gozo</td>
+<td>90 dias/quinquênio. Remuneratória enquanto há vínculo. Na desvinculação: indenizatória c/ teto na base (Tema 975 STF).</td>
+</tr>
+<tr>
+<td>Adicional por Tempo de Serviço — Quinquênio</td>
+<td class="fundamento-legal">LC Mun. nº 43/2022, art. 73</td>
+<td class="center"><span class="badge badge-rem">Remuneratória</span></td>
+<td class="center"><span class="badge-sim">Sim</span></td>
+<td class="valor">5% por quinquênio<br/>s/ vencimento</td>
+<td>Vantagem pessoal. Compõe o somatório para aferição do teto/subteto (RE 606.358/SP — Tema 397 STF).</td>
+</tr>
+<tr>
+<td>Sexta-Parte</td>
+<td class="fundamento-legal">LC Mun. nº 43/2022, art. 74</td>
+<td class="center"><span class="badge badge-rem">Remuneratória</span></td>
+<td class="center"><span class="badge-sim">Sim</span></td>
+<td class="valor">1/6 da remun.<br/>após 20 anos<br/>de efetivo exerc.</td>
+<td>Vantagem pessoal (após 20 anos). Integra o somatório remuneratório mensal para aferição do teto.</td>
+</tr>
+<tr class="grupo-header"><td colspan="6">⚠️ CONDIÇÕES ESPECIAIS DE TRABALHO</td></tr>
+<tr>
+<td>Grat. por Serviço Extraordinário (Horas Extras)</td>
+<td class="fundamento-legal">Art. 7º, XVI, CF/88; LC Mun. nº 43/2022, art. 59</td>
+<td class="center"><span class="badge badge-rem">Remuneratória</span></td>
+<td class="center"><span class="badge-sim">Sim</span></td>
+<td class="valor">50% (seg–sáb)<br/>100% (dom/feriados)<br/>s/ hora normal</td>
+<td>Posição deste parecer (divergindo TJSP/TCESP): remuneratória pela linha da Rcl 88.319 ED/SP. Acréscimo pelo trabalho, não ressarcimento.</td>
+</tr>
+<tr>
+<td>Grat. Atividades Insalubres / Perigosas / Penosas</td>
+<td class="fundamento-legal">Art. 7º, XXIII, CF/88; LC Mun. nº 43/2022, art. 65</td>
+<td class="center"><span class="badge badge-rem">Remuneratória</span></td>
+<td class="center"><span class="badge-sim">Sim</span></td>
+<td class="valor">10/20/40% s/ sal. mín.<br/>Periculosidade:<br/>30% s/ vencimento</td>
+<td><em>Pro labore faciendo.</em> Acréscimo por condições especiais. Exige laudo técnico. Integra o somatório do teto (ARE 1.048.172/SC — STF).</td>
+</tr>
+<tr>
+<td>Gratificação por Trabalho Noturno</td>
+<td class="fundamento-legal">Art. 7º, IX, CF/88; LC Mun. nº 43/2022, art. 69</td>
+<td class="center"><span class="badge badge-rem">Remuneratória</span></td>
+<td class="center"><span class="badge-sim">Sim</span></td>
+<td class="valor">20% adicional<br/>s/ valor-hora<br/>(22h–5h)</td>
+<td>Retribuição pelo labor em horário socialmente mais gravoso. <em>Pro labore faciendo.</em> Integra o somatório do teto.</td>
+</tr>
+<tr class="grupo-verde"><td colspan="6">✅ VERBAS INDENIZATÓRIAS — COM FUNDAMENTO LEGAL EXPRESSO</td></tr>
+<tr>
+<td>Vale-Alimentação</td>
+<td class="fundamento-legal">Lei Mun. nº 3.165/2025, arts. 1º a 3º; SV nº 55 / STF</td>
+<td class="center"><span class="badge badge-ind">Indenizatória</span></td>
+<td class="center"><span class="badge-nao">Não</span></td>
+<td class="valor">R$ 1.041,89<br/>(valor fixo)</td>
+<td>Natureza indenizatória consolidada pela SV 55 do STF. Não integra a remuneração nem o cômputo do teto. <em>Obs.:</em> a EC 135/2024 exige futura lei nacional para formalizar as exceções ao teto; recomenda-se monitorar sua edição.</td>
+</tr>
+<tr>
+<td>Diárias</td>
+<td class="fundamento-legal">LC Mun. nº 43/2022, art. 55; LC Mun. nº 29/2021, art. 20</td>
+<td class="center"><span class="badge badge-ind">Indenizatória</span></td>
+<td class="center"><span class="badge-nao">Não</span></td>
+<td class="valor">Variável<br/>(deslocamento<br/>a serviço)</td>
+<td>Recomposição de gastos no deslocamento eventual a serviço. Finalidade reparatória. Não integra o cômputo do teto.</td>
+</tr>
+<tr>
+<td>Indenização de Transporte</td>
+<td class="fundamento-legal">LC Mun. nº 43/2022, art. 56</td>
+<td class="center"><span class="badge badge-ind">Indenizatória</span></td>
+<td class="center"><span class="badge-nao">Não</span></td>
+<td class="valor">Variável<br/>(uso meio<br/>próprio)</td>
+<td>Ressarcimento de despesas com locomoção própria em serviços externos. Caráter ressarcitório. Excluída do cômputo do teto.</td>
+</tr>
+<tr class="grupo-header"><td colspan="6">🏛️ SERVIDORES INATIVOS — PROVENTOS DE APOSENTADORIA</td></tr>
+<tr>
+<td>Proventos de Aposentadoria</td>
+<td class="fundamento-legal">Art. 37, XI, CF/88; Lei Mun. nº 2.476/2006; Art. 17 ADCT; EC 41/2003</td>
+<td class="center"><span class="badge badge-rem">Remuneratória</span></td>
+<td class="center"><span class="badge-sim">Sim</span></td>
+<td class="valor">R$ 18.312,17<br/>e<br/>R$ 22.000,00*</td>
+<td>*Escriturário aposentado: proventos brutos de R$ 29.497,43 com redutor aplicado. Secretário aposentado: R$ 18.312,17 (dentro do teto). Processo judicial em andamento (MS nº 1015584-02.2023.8.26.0482).</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- OBSERVAÇÃO FINAL -->
+<div style="background:#e8edf5;border-left:4px solid var(--azul-medio);border-radius:8px;padding:13px 18px;margin-top:4px;display:flex;align-items:flex-start;gap:12px;">
+<span style="font-size:20px;flex-shrink:0;margin-top:1px;">📄</span>
+<p style="font-size:12px;color:var(--texto-medio);line-height:1.65;">
+<strong style="color:var(--azul-escuro);">Nota:</strong> A análise jurídica completa das rubricas remuneratórias e indenizatórias constantes da folha de pagamento da Câmara Municipal de Álvares Machado — incluindo fundamentação doutrinária, jurisprudencial e normativa de cada verba — foi realizada por meio de <strong>Parecer Jurídico</strong> emitido pela Procuradoria Jurídica Legislativa em 1.º de abril de 2026, disponível para consulta no <strong>sítio institucional da Câmara Municipal de Álvares Machado</strong>.
+      </p>
+</div>
+</div><!-- fim painel-body -->
+<!-- RODAPÉ -->
+<div class="rodape">
+<div class="rod-esq">
+<strong>Diogo Ramos Cerbelera Neto — Procurador Legislativo</strong>
+      Câmara Municipal de Álvares Machado/SP · Parecer de caráter técnico-jurídico orientativo e não vinculante
+    </div>
+<div class="rod-dir">
+<div class="oab">OAB/SP 425.172</div>
+      Álvares Machado, 1.º de abril de 2026<br/>
+      Rcl 88.319/SP · STF · Rel. Min. Flávio Dino<br/>
+      Notificação TCESP — UR-05 · Pres. Prudente
+    </div>
+</div>
+</div>
+</body>
+</html>
